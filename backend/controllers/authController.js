@@ -28,6 +28,8 @@ const registerUser = async (req, res) => {
 
     res.cookie("auth_token", accessToken, {
       httpOnly: true,
+      secure: true, // required for HTTPS
+      sameSite: "none", // required for cross-site cookies
     });
 
     return response(res, 201, "User created succesfully", {
@@ -59,6 +61,8 @@ const loginUser = async (req, res) => {
 
     res.cookie("auth_token", accessToken, {
       httpOnly: true,
+      secure: true, // required for HTTPS
+      sameSite: "none", // required for cross-site cookies
     });
 
     return response(res, 201, "User logged in succesfully", {
@@ -75,6 +79,9 @@ const logout = (req, res) => {
   try {
     res.cookie("auth_token", " ", {
       httpOnly: true,
+
+      secure: true, // required for HTTPS
+      sameSite: "none", // required for cross-site cookies
       expires: new Date(0),
     });
     return response(res, 200, "User logged out successfully");
@@ -84,4 +91,4 @@ const logout = (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser ,logout };
+module.exports = { registerUser, loginUser, logout };
