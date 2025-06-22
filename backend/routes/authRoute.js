@@ -20,6 +20,8 @@ router.get('/google/callback',passport.authenticate('google',{failureRedirect: `
      const accessToken = generateToken(req?.user);
         res.cookie("auth_token", accessToken, {
           httpOnly: true,
+          secure: true,      // required for HTTPS
+  sameSite: "none",  // required for cross-site cookies
         });
 
         res.redirect(`${process.env.FRONTEND_URL}`);
