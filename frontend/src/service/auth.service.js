@@ -3,26 +3,27 @@ import axiosInstance from "./url.service"
  //signUp USer
 export const registerUser = async(userData) =>{
     try{
-       const response = await axiosInstance.post('/auth/register', userData, {
-           withCredentials: true
-       });
-       return response.data;
+       const response=await axiosInstance.post('/auth/register',userData);
+     
+        return response.data
+       
     }catch(error){
-        console.log(error);
+        console.log(error)
     }
 }
 
+
+//login User
 export const loginUser = async(userData) =>{
     try{
-       const response = await axiosInstance.post('/auth/login', userData, {
-           withCredentials: true
-       });
-       return response.data;
+       const response=await axiosInstance.post('/auth/login',userData);
+      
+        return response.data
+       
     }catch(error){
-        console.log(error);
+        console.log(error)
     }
 }
-
 
 //logout User
 export const logout = async() =>{
